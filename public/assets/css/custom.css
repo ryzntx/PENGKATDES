@@ -1,0 +1,46 @@
+
+.dropdown-user .dropdown-menu {
+  min-width: 13rem;
+}
+.dropdown-user .dropdown-menu .dropdown-header {
+  text-transform: none;
+  letter-spacing: normal;
+}
+.dropdown-user .dropdown-menu .dropdown-header .dropdown-user-img {
+  height: 2.5rem;
+  width: 2.5rem;
+  margin-right: 1rem;
+  border-radius: 100%;
+}
+.dropdown-user .dropdown-menu .dropdown-header .dropdown-user-details {
+  font-weight: 400;
+}
+.dropdown-user .dropdown-menu .dropdown-header .dropdown-user-details .dropdown-user-details-name {
+  color: #212832;
+  font-weight: 500;
+  font-size: 0.9rem;
+  max-width: 10rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dropdown-user .dropdown-menu .dropdown-header .dropdown-user-details .dropdown-user-details-email {
+  color: #69707a;
+  font-size: 0.75rem;
+  max-width: 10rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dropdown-user .dropdown-menu .dropdown-item {
+  align-items: center;
+}
+.dropdown-user .dropdown-menu .dropdown-item .dropdown-item-icon {
+  color: #a7aeb8;
+}
+.dropdown-user .dropdown-menu .dropdown-item .dropdown-item-icon svg {
+  vertical-align: inherit;
+}
+.dropdown-user .dropdown-menu .dropdown-item:active .dropdown-item-icon {
+  color: #fff;
+}
