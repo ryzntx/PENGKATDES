@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Filters\SessionAuth;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -24,6 +25,9 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'auth'          => SessionAuth::class,
+        'isAdmin'       => \App\Filters\IsAdmin::class,
+        'isPegawai'     => \App\Filters\IsPegawai::class,
     ];
 
     /**
@@ -34,6 +38,7 @@ class Filters extends BaseConfig
      */
     public array $globals = [
         'before' => [
+            'auth' => ['except' => ['/', '/auth/*']],
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',
@@ -65,5 +70,8 @@ class Filters extends BaseConfig
      * Example:
      * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
      */
-    public array $filters = [];
+    public array $filters = [
+        'isAdmin' => ['before' => ['admin/*']],
+        'isPegawai' => ['before' => ['pegawai/*']],
+    ];
 }
