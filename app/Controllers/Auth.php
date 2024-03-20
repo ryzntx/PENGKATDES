@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\UserModels;
+use App\Models\UserModel;
 
 class Auth extends BaseController
 {
@@ -21,7 +21,7 @@ class Auth extends BaseController
     // Process the login form
     public function postLoginAction()
     {
-        $userModels = new UserModels();
+        $userModels = new UserModel();
         // Get the username and password from the form
         $username = $this->request->getVar("username");
         $password = $this->request->getVar("password");
@@ -71,7 +71,7 @@ class Auth extends BaseController
     // Process the register form
     public function postRegisterAction()
     {
-        $userModels = new UserModels();
+        $userModels = new UserModel();
         // Get the data from the form
         $nik = $this->request->getVar("nik");
         $nama = $this->request->getVar("nama");

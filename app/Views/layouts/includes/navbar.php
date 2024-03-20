@@ -23,7 +23,7 @@
                     <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
                         <?php
                         $avatar = new LasseRafn\InitialAvatarGenerator\InitialAvatar();
-                        $user = model(App\Models\UserModels::class)->ambilDataLogin();
+                        $user = model(App\Models\UserModel::class)->ambilDataLogin();
                         echo $avatar->name($user->nama)->rounded()->smooth()->size(40)->autoColor()->generateSvg()->toXMLString();
                         ?>
                         <!-- <img

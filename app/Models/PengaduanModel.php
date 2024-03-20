@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class PengaduanModels extends BaseModel
+class PengaduanModel extends BaseModel
 {
     protected $table            = 'pengaduans'; // Nama Tabel
     protected $primaryKey       = 'id_pengaduans'; // Primary Key pada Tabel

@@ -3,20 +3,20 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\UserModels;
+use App\Models\UserModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class ProfileSettings extends BaseController
 {
     public function getIndex()
     {
-        $data = ['user' => model(UserModels::class)->ambilDataLogin()];
+        $data = ['user' => model(UserModel::class)->ambilDataLogin()];
         return view('pages/profile_settings/index', $data);
     }
 
     public function postUpdateData()
     {
-        $userModels = new UserModels();
+        $userModels = new UserModel();
         $id_users = session()->get('id_users');
         $username = $this->request->getVar('username');
         $email = $this->request->getVar('email');
@@ -77,7 +77,7 @@ class ProfileSettings extends BaseController
 
     public function postUpdatePassword()
     {
-        $userModels = new UserModels();
+        $userModels = new UserModel();
         $id_users = session()->get('id_users');
         $old_password = $this->request->getVar('old_password');
         $new_password = $this->request->getVar('new_password');

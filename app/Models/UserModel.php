@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class UserModels extends BaseModel
+class UserModel extends BaseModel
 {
     protected $table            = 'users'; // Nama Tabel
     protected $primaryKey       = 'id_users'; // Primary Key pada Tabel
