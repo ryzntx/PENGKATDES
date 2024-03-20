@@ -42,16 +42,13 @@ class Auth extends BaseController
             return redirect()->back()->withInput()->with("errors", "Username tidak ditemukan!");
         } else {
             // Check if the password is correct
-            if (!password_verify($password, $checkUser['password'])) {
+            if (!password_verify($password, $checkUser->password)) {
                 return redirect()->back()->withInput()->with("errors", "Password salah!");
             } else {
                 // Set the session data for the user
                 $this->session->set([
-                    "id_users" => $checkUser['id_users'],
-                    "nama" => $checkUser['nama'],
-                    "username" => $checkUser['username'],
-                    "telp" => $checkUser['telp'],
-                    "level" => $checkUser['level'],
+                    "id_users" => $checkUser->id_users,
+                    "level" => $checkUser->level,
                     'logged_in' => TRUE,
                 ]);
                 // Redirect to the dashboard
