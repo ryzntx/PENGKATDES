@@ -61,7 +61,7 @@ trait RequestTrait
 
         $proxyIPs = config(App::class)->proxyIPs;
 
-        if (! empty($proxyIPs) && (! is_array($proxyIPs) || is_int(array_key_first($proxyIPs)))) {
+        if (!empty($proxyIPs) && (!is_array($proxyIPs) || is_int(array_key_first($proxyIPs)))) {
             throw new ConfigException(
                 'You must set an array with Proxy IP address key and HTTP header name value in Config\App::$proxyIPs.'
             );
@@ -93,7 +93,7 @@ trait RequestTrait
             }
 
             // We have a subnet ... now the heavy lifting begins
-            if (! isset($separator)) {
+            if (!isset($separator)) {
                 $separator = $ipValidator($this->ipAddress, 'ipv6') ? ':' : '.';
             }
 
@@ -103,7 +103,7 @@ trait RequestTrait
             }
 
             // Convert the REMOTE_ADDR IP address to binary, if needed
-            if (! isset($ip, $sprintf)) {
+            if (!isset($ip, $sprintf)) {
                 if ($separator === ':') {
                     // Make sure we're having the "full" IPv6 format
                     $ip = explode(':', str_replace('::', str_repeat(':', 9 - substr_count($this->ipAddress, ':')), $this->ipAddress));
@@ -146,7 +146,7 @@ trait RequestTrait
             }
         }
 
-        if (! $ipValidator($this->ipAddress)) {
+        if (!$ipValidator($this->ipAddress)) {
             return $this->ipAddress = '0.0.0.0';
         }
 
@@ -173,7 +173,7 @@ trait RequestTrait
             // e.g. client_ip, proxy_ip1, proxy_ip2, etc.
             sscanf($spoof, '%[^,]', $spoof);
 
-            if (! $ipValidator($spoof)) {
+            if (!$ipValidator($spoof)) {
                 $spoof = null;
             }
         }
@@ -248,7 +248,7 @@ trait RequestTrait
      */
     public function fetchGlobal(string $name, $index = null, ?int $filter = null, $flags = null)
     {
-        if (! isset($this->globals[$name])) {
+        if (!isset($this->globals[$name])) {
             $this->populateGlobals($name);
         }
 
@@ -299,11 +299,12 @@ trait RequestTrait
             }
         }
 
-        if (! isset($value)) {
+        if (!isset($value)) {
             $value = $this->globals[$name][$index] ?? null;
         }
 
-        if (is_array($value)
+        if (
+            is_array($value)
             && (
                 $filter !== FILTER_DEFAULT
                 || (
@@ -339,7 +340,7 @@ trait RequestTrait
      */
     protected function populateGlobals(string $name)
     {
-        if (! isset($this->globals[$name])) {
+        if (!isset($this->globals[$name])) {
             $this->globals[$name] = [];
         }
 
