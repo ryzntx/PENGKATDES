@@ -53,6 +53,7 @@
 
     <!-- Scripts/JS -->
     <?= $this->include('layouts/includes/scripts') ?>
+    <?= $this->renderSection('addon-scripts'); ?>
 </body>
 
 </html>
