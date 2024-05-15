@@ -13,6 +13,14 @@
                     class="nav-link <?= (url_is('admin/manajemenAkun') || url_is('admin/manajemenAkun/*')) ? 'active' : '' ?>"
                     href="<?= base_url('admin/manajemenAkun') ?>"><i class="fas fa-users me-3"></i><span>Manajemen
                         Pegawai</span></a></li>
+            <li class="nav-item"><a
+                    class="nav-link <?= (url_is('admin/organisasiDesa') || url_is('admin/organisasiDesa/*')) ? 'active' : '' ?>"
+                    href="<?= base_url('admin/organisasiDesa') ?>"><i class="fas fa-users me-3"></i><span>Manajemen
+                        Struktur Organisasi</span></a></li>
+            <li class="nav-item"><a
+                    class="nav-link <?= (url_is('admin/profileDesa') || url_is('admin/profileDesa/*')) ? 'active' : '' ?>"
+                    href="<?= base_url('admin/profileDesa') ?>"><i class="fas fa-users me-3"></i><span>Ubah Profile
+                        Desa</span></a></li>
         </ul>
         <!-- <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div> -->
     </div>

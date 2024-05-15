@@ -17,7 +17,7 @@ class ProfileSettings extends BaseController
     public function postUpdateData()
     {
         $userModels = new UserModel();
-        $id_users = session()->get('id_users');
+        $id_users = session()->get('id_user');
         $username = $this->request->getVar('username');
         $email = $this->request->getVar('email');
         $telp = $this->request->getVar('telp');
@@ -25,7 +25,7 @@ class ProfileSettings extends BaseController
         $rules = [
             'username' => [
                 'label' => 'Nama Pengguna',
-                'rules' => 'required|alpha_numeric|min_length[5]|max_length[20]|is_unique[users.username,id_users,' . $id_users . ']',
+                'rules' => 'required|alpha_numeric|min_length[5]|max_length[20]|is_unique[users.username,id,' . $id_users . ']',
                 'errors' => [
                     'required' => '{field} tidak boleh kosong',
                     'alpha_numeric' => '{field} hanya boleh berisi huruf dan angka',
@@ -36,7 +36,7 @@ class ProfileSettings extends BaseController
             ],
             'email' => [
                 'label' => 'E-Mail',
-                'rules' => 'required|valid_email|is_unique[users.email,id_users,' . $id_users . ']',
+                'rules' => 'required|valid_email|is_unique[users.email,id,' . $id_users . ']',
                 'errors' => [
                     'required' => '{field} tidak boleh kosong',
                     'valid_email' => '{field} tidak valid',
@@ -78,7 +78,7 @@ class ProfileSettings extends BaseController
     public function postUpdatePassword()
     {
         $userModels = new UserModel();
-        $id_users = session()->get('id_users');
+        $id_users = session()->get('id_user');
         $old_password = $this->request->getVar('old_password');
         $new_password = $this->request->getVar('new_password');
         $confirm_password = $this->request->getVar('confirm_password');

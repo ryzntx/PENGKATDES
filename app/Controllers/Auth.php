@@ -7,6 +7,7 @@ use App\Models\UserModel;
 
 class Auth extends BaseController
 {
+    use \App\Traits\Loggable;
     // Show the login page
     public function getLogin()
     {
@@ -47,12 +48,17 @@ class Auth extends BaseController
             } else {
                 // Set the session data for the user
                 $this->session->set([
-                    "id_users" => $checkUser->id_users,
+                    "id_user" => $checkUser->id,
                     "level" => $checkUser->level,
-                    'logged_in' => TRUE,
+                    'logged_in' => true,
                 ]);
                 // Redirect to the dashboard
-                return redirect()->to("beranda");
+                $this->logToDb(null, null, 'login');
+                if ($checkUser->level == 'admin') {
+                    return redirect()->to("beranda");
+                } else {
+                    return redirect()->to("user");
+                }
             }
         }
     }
@@ -115,6 +121,7 @@ class Auth extends BaseController
     // Process the logout
     public function getLogout()
     {
+        $this->logToDb(null, null, 'logout');
         // Destroy the session
         $this->session->destroy();
         // Redirect to the login page
