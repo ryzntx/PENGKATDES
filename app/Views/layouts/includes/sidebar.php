@@ -28,8 +28,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?=(url_is('pegawai/daftarPengaduan') || url_is('pegawai/daftarPengaduan/*')) ? 'active' : ''?>"
-                    href="<?=base_url('pegawai/daftarPengaduan')?>"><i class="fas fa-list me-3"></i><span>Daftar
+                <a class="nav-link <?=(url_is('pegawai/datapengaduan') || url_is('pegawai/datapengaduan/*')) ? 'active' : ''?>"
+                    href="<?=base_url('pegawai/datapengaduan')?>"><i class="fas fa-list me-3"></i><span>Daftar
                         Pengaduan</span>
                 </a>
             </li>
