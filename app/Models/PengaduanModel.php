@@ -68,4 +68,41 @@ class PengaduanModel extends BaseModel
         return $this->where('status', 'selesai')->where('user_id', session()->get('id_user'))->findAll();
     }
 
+    public function getPengaduanData(?string $id = null)
+    {
+        if ($id != null) {
+            return $this->select('pengaduan.id, pengaduan.judul_laporan, pengaduan.isi_laporan, pengaduan.status, pengaduan.created_at, user.nama, user.nik')
+                ->join('user', 'user.id = pengaduan.user_id')
+                ->where('pengaduan.id', $id)
+                ->first();
+        } else {
+            return $this->select('pengaduan.id, pengaduan.judul_laporan, pengaduan.isi_laporan, pengaduan.status, pengaduan.created_at, user.nama, user.nik')
+                ->join('user', 'user.id = pengaduan.user_id')
+                ->findAll();
+        }
+    }
+
+    public function getTanggapanPengaduan(?string $user_id = null, ?string $id = null)
+    {
+        $res = $this->select('pengaduan.id, pengaduan.judul_laporan, pengaduan.isi_laporan, pengaduan.status, pengaduan.created_at, user.nama, user.nik, tanggapan.isi_tanggapan, tanggapan.created_at as tanggal_tanggapan, tanggapan.id as id_tanggapan')
+            ->join('user', 'user.id = pengaduan.user_id')
+            ->join('tanggapan', 'tanggapan.pengaduan_id = pengaduan.id', 'left')
+            ->findAll();
+        if ($user_id != null) {
+            $res = $this->select('pengaduan.id, pengaduan.judul_laporan, pengaduan.isi_laporan, pengaduan.status, pengaduan.created_at, user.nama, user.nik, tanggapan.isi_tanggapan, tanggapan.created_at as tanggal_tanggapan, tanggapan.id as id_tanggapan')
+                ->join('user', 'user.id = pengaduan.user_id')
+                ->join('tanggapan', 'tanggapan.pengaduan_id = pengaduan.id', 'left')
+                ->where('pengaduan.user_id', $user_id)
+                ->findAll();
+        }
+        if ($id != null) {
+            $res = $this->select('pengaduan.id, pengaduan.judul_laporan, pengaduan.isi_laporan, pengaduan.status, pengaduan.created_at, user.nama, user.nik, tanggapan.isi_tanggapan, tanggapan.created_at as tanggal_tanggapan, tanggapan.id as id_tanggapan')
+                ->join('user', 'user.id = pengaduan.user_id')
+                ->join('tanggapan', 'tanggapan.pengaduan_id = pengaduan.id', 'left')
+                ->where('pengaduan.id', $id)
+                ->first();
+        }
+        return $res;
+    }
+
 }

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>Beranda &mdash; PENGKATDES</title>
+
+        <!-- Styles/CSS -->
+        <link rel="stylesheet" href="../../../assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../../assets/vendor/bootstrap-icons/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="../../../assets/vendor/bootstrap-fileinput/css/fileinput.min.css">
+        <link rel="stylesheet" href="../../../assets/vendor/bootstrap-fileinput/themes/bs5/theme.min.js">
+        <link rel="stylesheet" href="../../../assets/css/Nunito.css">
+        <link rel="stylesheet" href="../../../assets/vendor/fontawesome-free/css/all.min.css">
+        <link rel="stylesheet" href="../../../assets/css/custom.css">
+        <link rel="stylesheet" href="../../../assets/vendor/datatables/datatables.min.css">
+        <link rel="stylesheet" href="../../../assets/vendor/simple-notify/dist/simple-notify.min.css">
+        <link rel="stylesheet" href="../../../assets/vendor/sweetalert2/dist/sweetalert2.min.css">
+        <style>
+            * {
+                /* border: 1px red solid; */
+            }
+        </style>
+    </head>
+
+    <body id="page-top">
+        <div id="wrapper">
+            <!-- Sidebar/Sidemenu -->
+            <nav
+                class="navbar bg-body-tertiary shadow align-items-start sidebar accordion p-0 navbar-light m-md-3 rounded-4">
+                <div class="container-fluid d-flex flex-column p-0">
+                    <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                        <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-landmark"></i></div>
+                        <div class="sidebar-brand-text mx-3"><span>PENGKATDES</span></div>
+                    </a>
+                    <hr class="sidebar-divider my-0">
+                    <ul class="navbar-nav text-light" id="accordionSidebar">
+                        <li class="nav-item"><a class="nav-link <?=(url_is('beranda')) ? 'active' : ''?>"
+                                href="beranda"><i class="fas fa-tachometer-alt me-3"></i><span>Beranda</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link <?=(url_is('admin/manajemenAkun') || url_is('admin/manajemenAkun/*')) ? 'active' : ''?>"
+                                href="admin/manajemenAkun"><i class="fas fa-users me-3"></i><span>Manajemen
+                                    Pegawai</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link <?=(url_is('admin/organisasiDesa') || url_is('admin/organisasiDesa/*')) ? 'active' : ''?>"
+                                href="admin/organisasiDesa"><i class="fas fa-users me-3"></i><span>Manajemen
+                                    Struktur Organisasi</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link <?=(url_is('admin/profileDesa') || url_is('admin/profileDesa/*')) ? 'active' : ''?>"
+                                href="admin/profileDesa"><i class="fas fa-users me-3"></i><span>Ubah
+                                    Profile
+                                    Desa</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link <?=(url_is('pegawai/daftarPengaduan') || url_is('pegawai/daftarPengaduan/*')) ? 'active' : ''?>"
+                                href="pegawai/daftarPengaduan"><i class="fas fa-list me-3"></i><span>Daftar
+                                    Pengaduan</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                    <!-- <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div> -->
+                </div>
+            </nav>
+            <div class="bg-body d-flex flex-column" id="content-wrapper">
+                <!-- Navbar -->
+                <nav
+                    class="navbar navbar-expand bg-body-tertiary shadow navbar-light topbar-divider static-top navbar-light rounded-4 mb-3 m-md-3">
+                    <div class="container-fluid"><button class="btn rounded-circle me-3" id="sidebarToggleTop"
+                            type="button"><i class="fas fa-bars"></i></button>
+                        <ul class="navbar-nav align-items-center align-content-center flex-nowrap ms-auto">
+                            <li class="theme-switcher nav-item dropdown"><a class="dropdown-toggle nav-link"
+                                    aria-expanded="false" data-bs-toggle="dropdown" href="#"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                                        viewBox="0 0 16 16" class="bi bi-sun-fill mb-1">
+                                        <path
+                                            d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z">
+                                        </path>
+                                    </svg></a>
+                                <div class="dropdown-menu dropdown-menu-end"><a
+                                        class="dropdown-item d-flex align-items-center" href="#"
+                                        data-bs-theme-value="light"><svg xmlns="http://www.w3.org/2000/svg" width="1em"
+                                            height="1em" fill="currentColor" viewBox="0 0 16 16"
+                                            class="bi bi-sun-fill opacity-50 me-2">
+                                            <path
+                                                d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z">
+                                            </path>
+                                        </svg>Light</a><a class="dropdown-item d-flex align-items-center" href="#"
+                                        data-bs-theme-value="dark"><svg xmlns="http://www.w3.org/2000/svg" width="1em"
+                                            height="1em" fill="currentColor" viewBox="0 0 16 16"
+                                            class="bi bi-moon-stars-fill opacity-50 me-2">
+                                            <path
+                                                d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278">
+                                            </path>
+                                            <path
+                                                d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z">
+                                            </path>
+                                        </svg>Dark</a><a class="dropdown-item d-flex align-items-center" href="#"
+                                        data-bs-theme-value="auto"><svg xmlns="http://www.w3.org/2000/svg" width="1em"
+                                            height="1em" fill="currentColor" viewBox="0 0 16 16"
+                                            class="bi bi-circle-half opacity-50 me-2">
+                                            <path d="M8 15A7 7 0 1 0 8 1zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16"></path>
+                                        </svg>Auto</a></div>
+                            </li>
+                            <div class="d-none d-sm-block topbar-divider"></div>
+                            <li class="nav-item dropdown no-arrow">
+                                <div class="nav-item dropdown no-arrow">
+                                    <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown"
+                                        href="#">
+
+                                        <img class="border rounded-circle img-profile"
+                                            src="../../../assets/img/avatars/avatar1.jpeg">
+                                        <span class="text-body-emphasis d-none d-lg-inline ms-2 small">User</span>
+                                    </a>
+                                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in w-100">
+                                        <span class="dropdown-item-text d-flex align-items-center">
+
+                                            <div class="dropdown-user-details">
+                                                <div class="dropdown-user-details-name">User</div>
+                                                <div class="dropdown-user-details-email">Username</div>
+                                            </div>
+                                        </span>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="profilesettings"><i
+                                                class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a><a
+                                            class="dropdown-item" href="#"><i
+                                                class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a>
+                                        <a class="dropdown-item" href="logs"><i
+                                                class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity
+                                            log</a>
+                                        <div class="dropdown-divider"></div><a class="dropdown-item" href="#"
+                                            data-bs-toggle="modal" data-bs-target="#logoutModal"><i
+                                                class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Keluar</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div id="content">
+                    <!-- Main Konten -->
+                    <div class="container-fluid">
+                        <div class="d-sm-flex justify-content-between align-content-center align-items-center my-4">
+                            <h3 class="text-body-emphasis mb-0">Daftar Pengaduan / Laporan</h3>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb my-auto">
+                                    <li class="breadcrumb-item"><a href="#">Pegawai</a></li>
+                                    <li class="breadcrumb-item "><a href="#">Daftar Pengaduan / Laporan</a></li>
+                                    <li class="breadcrumb-item active">Tanggapi</li>
+                                </ol>
+                            </nav>
+                        </div>
+                        <a href="./index.html" class="btn btn-secondary mb-4"><i
+                                class="fa fa-arrow-left me-2"></i>Kembali</a>
+                        <div class="card my-3">
+                            <div class="card-header">
+
+                                <h5 class="text-body-emphasis mb-0"><small>Detail Laporan / Pengaduan</small> <br>
+                                    <strong>Laporan Jalanan Rusak</strong>
+                                    <span class="badge text-bg-success">Selesai</span>
+                                </h5>
+
+
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Isi Laporan</label>
+                                    <textarea name="isi_laporan" id="isi_laporan" class="form-control"
+                                        readonly=""> Jalanan rusak terjadi pada RW 07, yang disebabkan oleh truk proyek gadungan yang tidak bertanggung jawab melintas.</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="form-label">Foto</label>
+                                    <div class="file-loading">
+                                        <input id="uploadFoto" name="foto[]" type="file" multiple>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="text-body-emphasis mb-0"><small>Tanggapan</small></h5>
+                            </div>
+                            <form action="#" method="post">
+                                <div class="card-body">
+                                    <input type="hidden" name="id_tanggapan" value="1">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Isi Tanggapan</label>
+                                        <textarea name="isi_tanggapan" id="isi_tanggapan"
+                                            class="form-control">Okeyyy Sipp Boss!</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Status</label>
+                                        <select name="status" id="status" class="form-select">
+                                            <option value="baru">Laporan Baru</option>
+                                            <option value="proses">Sedang di Proses
+                                            </option>
+                                            <option selected="" value="selesai">Laporan Selesai
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <!-- <div class="form-group">
+                <label for="" class="form-label">Foto</label>
+                <div class="file-loading">
+                    <input id="uploadFoto" name="foto[]" type="file" multiple>
+                </div>
+            </div> -->
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary btn-sm"><i
+                                            class="fa fa-reply me-2"></i>Kirim
+                                        Tanggapan</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer -->
+                <footer class="bg-body sticky-footer">
+                    <div class="container my-auto">
+                        <div class="text-center my-auto copyright"><span>Copyright &copy; PENGKATDES
+                                2024</span></div>
+                    </div>
+                </footer>
+            </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="logoutModalLabel">Siap untuk keluar?</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Pilih "Keluar" di bawah ini jika Anda siap untuk mengakhiri sesi Anda saat ini.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <a href="<?= base_url('auth/logout') ?>" class="btn btn-danger">Keluar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Scripts/JS -->
+        <script src="../../../assets/vendor/jquery/jquery.min.js"></script>
+        <script src="../../../assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../../../assets/vendor/bootstrap-fileinput/js/fileinput.min.js"></script>
+        <script src="../../../assets/js/chart.min.js"></script>
+
+        <script src="../../../assets/vendor/jquery.pwstrength.bootstrap/dist/pwstrength-bootstrap.min.js">
+        </script>
+        <script src="../../../assets/vendor/datatables/datatables.min.js"></script>
+        <script src="../../../assets/vendor/simple-notify/dist/simple-notify.min.js"></script>
+        <script src="../../../assets/vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
+        <script src="../../../assets/js/bs-init.js"></script>
+        <script src="../../../assets/js/theme.js"></script>
+
+        <script>
+            (function () {
+
+                // JavaScript snippet handling Dark/Light mode switching
+
+                const getStoredTheme = () => localStorage.getItem('theme');
+                const setStoredTheme = theme => localStorage.setItem('theme', theme);
+                const forcedTheme = document.documentElement.getAttribute('data-bss-forced-theme');
+
+                const getPreferredTheme = () => {
+
+                    if (forcedTheme) return forcedTheme;
+
+                    const storedTheme = getStoredTheme();
+                    if (storedTheme) {
+                        return storedTheme;
+                    }
+
+                    const pageTheme = document.documentElement.getAttribute('data-bs-theme');
+
+                    if (pageTheme) {
+                        return pageTheme;
+                    }
+
+                    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                }
+
+                const setTheme = theme => {
+                    if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                        document.documentElement.setAttribute('data-bs-theme', 'dark');
+                    } else {
+                        document.documentElement.setAttribute('data-bs-theme', theme);
+                    }
+                }
+
+                setTheme(getPreferredTheme());
+
+                const showActiveTheme = (theme, focus = false) => {
+                    const themeSwitchers = [].slice.call(document.querySelectorAll('.theme-switcher'));
+
+                    if (!themeSwitchers.length) return;
+
+                    document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+                        element.classList.remove('active');
+                        element.setAttribute('aria-pressed', 'false');
+                    });
+
+                    for (const themeSwitcher of themeSwitchers) {
+
+                        const btnToActivate = themeSwitcher.querySelector('[data-bs-theme-value="' + theme +
+                            '"]');
+
+                        if (btnToActivate) {
+                            btnToActivate.classList.add('active');
+                            btnToActivate.setAttribute('aria-pressed', 'true');
+                        }
+                    }
+                }
+
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                    const storedTheme = getStoredTheme();
+                    if (storedTheme !== 'light' && storedTheme !== 'dark') {
+                        setTheme(getPreferredTheme());
+                    }
+                });
+
+                window.addEventListener('DOMContentLoaded', () => {
+                    showActiveTheme(getPreferredTheme());
+
+                    document.querySelectorAll('[data-bs-theme-value]')
+                        .forEach(toggle => {
+                            toggle.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                const theme = toggle.getAttribute('data-bs-theme-value');
+                                setStoredTheme(theme);
+                                setTheme(theme);
+                                showActiveTheme(theme);
+                            })
+                        })
+                });
+            })();
+
+            function confirmDeleteAlert(e, target) {
+                e.preventDefault()
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    text: "Data yang dihapus tidak bisa dikembalikan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = target.href
+                    }
+                })
+            }
+            $('#isi_laporan').on('input', function () {
+                this.style.height = 'auto';
+
+                this.style.height =
+                    (this.scrollHeight) + 'px';
+            });
+            $("#uploadFoto").fileinput({
+                theme: 'bs5',
+                overwriteInitial: false,
+                initialPreview: [
+
+                ],
+                initialPreviewConfig: [
+
+                ],
+                initialPreviewShowDelete: false,
+                initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
+                initialPreviewFileType: 'image', // image is the default and can be overridden in config below
+                showUpload: false,
+                showCaption: false,
+                browseOnZoneClick: false,
+                showRemove: false,
+                showClose: false,
+                showBrowse: false,
+                dropZoneTitle: 'Tidak ada Foto!',
+            });
+        </script>
+    </body>
+
+</html>

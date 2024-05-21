@@ -64,16 +64,20 @@ $("#formBuat").submit(function(e) {
         type: 'POST',
         data: data,
         success: function(response) {
-            console.log(response);
             id_pengaduan = response.id;
-            $('#file-0a').fileinput('upload');
+            var total = $('#file-0a').fileinput('getFilesCount', true);
+            if (total == 0) {
+                window.location.href = '<?=base_url('user/datalaporan/redirect')?>';
+            } else {
+                $('#file-0a').fileinput('upload');
+            }
         }
     })
 });
 
 $("#file-0a").fileinput({
     theme: 'bs5',
-    uploadUrl: `<?=base_url('user/datalaporan/uploadfoton/')?>`,
+    uploadUrl: `<?=base_url('user/datalaporan/uploadFotoN')?>`,
     uploadExtraData: function() {
         return {
             id: id_pengaduan
@@ -88,8 +92,14 @@ $("#file-0a").fileinput({
     showCaption: true,
     browseOnZoneClick: true,
     msgPlaceholder: 'Pilih {files} untuk di upload...',
-}).on('fileuploaded', function(event, previewId, index, fileId) {
-    window.location.href = '<?=base_url('user/datalaporan')?>';
+    showAjaxErrorDetails: true,
+}).on('fileuploaded', function(event, data, previewId, index, fileId) {
+    window.location.href = '<?=base_url('user/datalaporan/redirect')?>';
+}).on('fileuploaderror', function(event, data, msg) {
+    var response = data.response;
+    console.error(response);
+}).on('fileselectnone', function(event) {
+    console.error("Huh! No files were selected.");
 });
 </script>
 <?=$this->endSection();?>

@@ -6,21 +6,35 @@
         </a>
         <hr class="sidebar-divider my-0">
         <ul class="navbar-nav text-light" id="accordionSidebar">
-            <li class="nav-item"><a class="nav-link <?= (url_is('beranda')) ? 'active' : '' ?>"
-                    href="<?= base_url('beranda') ?>"><i class="fas fa-tachometer-alt me-3"></i><span>Beranda</span></a>
+            <li class="nav-item"><a class="nav-link <?=(url_is('beranda')) ? 'active' : ''?>"
+                    href="<?=base_url('beranda')?>"><i class="fas fa-tachometer-alt me-3"></i><span>Beranda</span></a>
             </li>
-            <li class="nav-item"><a
-                    class="nav-link <?= (url_is('admin/manajemenAkun') || url_is('admin/manajemenAkun/*')) ? 'active' : '' ?>"
-                    href="<?= base_url('admin/manajemenAkun') ?>"><i class="fas fa-users me-3"></i><span>Manajemen
-                        Pegawai</span></a></li>
-            <li class="nav-item"><a
-                    class="nav-link <?= (url_is('admin/organisasiDesa') || url_is('admin/organisasiDesa/*')) ? 'active' : '' ?>"
-                    href="<?= base_url('admin/organisasiDesa') ?>"><i class="fas fa-users me-3"></i><span>Manajemen
-                        Struktur Organisasi</span></a></li>
-            <li class="nav-item"><a
-                    class="nav-link <?= (url_is('admin/profileDesa') || url_is('admin/profileDesa/*')) ? 'active' : '' ?>"
-                    href="<?= base_url('admin/profileDesa') ?>"><i class="fas fa-users me-3"></i><span>Ubah Profile
-                        Desa</span></a></li>
+            <li class="nav-item">
+                <a class="nav-link <?=(url_is('admin/manajemenAkun') || url_is('admin/manajemenAkun/*')) ? 'active' : ''?>"
+                    href="<?=base_url('admin/manajemenAkun')?>"><i class="fas fa-users me-3"></i><span>Manajemen
+                        Pegawai</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?=(url_is('admin/organisasiDesa') || url_is('admin/organisasiDesa/*')) ? 'active' : ''?>"
+                    href="<?=base_url('admin/organisasiDesa')?>"><i class="fas fa-users me-3"></i><span>Manajemen
+                        Struktur Organisasi</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?=(url_is('admin/profileDesa') || url_is('admin/profileDesa/*')) ? 'active' : ''?>"
+                    href="<?=base_url('admin/profileDesa')?>"><i class="fas fa-users me-3"></i><span>Ubah Profile
+                        Desa</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?=(url_is('pegawai/daftarPengaduan') || url_is('pegawai/daftarPengaduan/*')) ? 'active' : ''?>"
+                    href="<?=base_url('pegawai/daftarPengaduan')?>"><i class="fas fa-list me-3"></i><span>Daftar
+                        Pengaduan</span>
+                </a>
+            </li>
+
+
         </ul>
         <!-- <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div> -->
     </div>

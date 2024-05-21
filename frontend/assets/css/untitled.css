@@ -1,0 +1,10 @@
+body {
+}
+
+.sidebar #sidebarToggle::after {
+  font-weight: 900;
+  content: "";
+  font-family: "Font Awesome 5 Free";
+  margin-right: .1rem;
+}
+

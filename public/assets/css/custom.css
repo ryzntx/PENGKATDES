@@ -13,7 +13,7 @@
   font-weight: 900;
   content: "";
   font-family: "Font Awesome 5 Free";
-  margin-right: .1rem;
+  margin-right: 0.1rem;
 }
 
 .dropdown-user .dropdown-menu {
@@ -32,7 +32,11 @@
 .dropdown-user .dropdown-menu .dropdown-header .dropdown-user-details {
   font-weight: 400;
 }
-.dropdown-user .dropdown-menu .dropdown-header .dropdown-user-details .dropdown-user-details-name {
+.dropdown-user
+  .dropdown-menu
+  .dropdown-header
+  .dropdown-user-details
+  .dropdown-user-details-name {
   color: #212832;
   font-weight: 500;
   font-size: 0.9rem;
@@ -41,7 +45,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.dropdown-user .dropdown-menu .dropdown-header .dropdown-user-details .dropdown-user-details-email {
+.dropdown-user
+  .dropdown-menu
+  .dropdown-header
+  .dropdown-user-details
+  .dropdown-user-details-email {
   color: #69707a;
   font-size: 0.75rem;
   max-width: 10rem;
@@ -60,4 +68,10 @@
 }
 .dropdown-user .dropdown-menu .dropdown-item:active .dropdown-item-icon {
   color: #fff;
+}
+
+textarea {
+  display: block;
+  overflow: hidden;
+  resize: none;
 }

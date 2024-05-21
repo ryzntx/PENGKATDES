@@ -100,13 +100,13 @@ class Exceptions extends BaseConfig
      */
     public function handler(int $statusCode, Throwable $exception): ExceptionHandlerInterface
     {
-        if (in_array($statusCode, [400, 403, 404, 500], true)) {
-            return new \App\Libraries\CustomExceptionHandler($this);
-        }
+        // if (in_array($statusCode, [400, 403, 404, 500], true)) {
+        //     return new \App\Libraries\CustomExceptionHandler($this);
+        // }
 
-        if ($exception instanceof PageNotFoundException) {
-            return new \App\Libraries\CustomExceptionHandler($this);
-        }
+        // if ($exception instanceof PageNotFoundException) {
+        //     return new \App\Libraries\CustomExceptionHandler($this);
+        // }
 
         return new ExceptionHandler($this);
     }

@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\UserModel;
-use CodeIgniter\HTTP\ResponseInterface;
 
 class ProfileSettings extends BaseController
 {
@@ -25,7 +24,7 @@ class ProfileSettings extends BaseController
         $rules = [
             'username' => [
                 'label' => 'Nama Pengguna',
-                'rules' => 'required|alpha_numeric|min_length[5]|max_length[20]|is_unique[users.username,id,' . $id_users . ']',
+                'rules' => 'required|alpha_numeric|min_length[5]|max_length[20]|is_unique[user.username,id,' . $id_users . ']',
                 'errors' => [
                     'required' => '{field} tidak boleh kosong',
                     'alpha_numeric' => '{field} hanya boleh berisi huruf dan angka',
@@ -36,7 +35,7 @@ class ProfileSettings extends BaseController
             ],
             'email' => [
                 'label' => 'E-Mail',
-                'rules' => 'required|valid_email|is_unique[users.email,id,' . $id_users . ']',
+                'rules' => 'required|valid_email|is_unique[user.email,id,' . $id_users . ']',
                 'errors' => [
                     'required' => '{field} tidak boleh kosong',
                     'valid_email' => '{field} tidak valid',
@@ -72,7 +71,7 @@ class ProfileSettings extends BaseController
             'telp' => $telp,
             'alamat' => $alamat,
         ]);
-        return redirect()->back()->with('success', 'Data berhasil diperbarui');
+        return redirect()->back()->with('toast_success', 'Data berhasil diperbarui');
     }
 
     public function postUpdatePassword()
@@ -113,6 +112,6 @@ class ProfileSettings extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
         $userModels->update($id_users, ['password' => password_hash($new_password, PASSWORD_BCRYPT)]);
-        return redirect()->back()->with('success', 'Sandi berhasil diperbarui');
+        return redirect()->back()->with('toast_success', 'Sandi berhasil diperbarui');
     }
 }

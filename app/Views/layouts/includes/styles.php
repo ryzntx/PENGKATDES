@@ -1,6 +1,10 @@
-<link rel="stylesheet" href="<?= base_url('assets/bootstrap/css/bootstrap.min.css') ?>">
-<link rel="stylesheet" href="<?= base_url('assets/css/Nunito.css') ?>">
-<link rel="stylesheet" href="<?= base_url('assets/fonts/fontawesome-all.min.css') ?>">
-<link rel="stylesheet" href="<?= base_url('assets/css/custom.css') ?>">
-<link rel="stylesheet" href="<?= base_url('assets/vendor/datatables/datatables.min.css') ?>">
-<link rel="stylesheet" href="<?= base_url('assets/vendor/sweetalert2/dist/sweetalert2.min.css') ?>">
+<link rel="stylesheet" href="<?=base_url('assets/bootstrap/css/bootstrap.min.css')?>">
+<link rel="stylesheet" href="<?=base_url('assets/vendor/bootstrap-icons/font/bootstrap-icons.min.css')?>">
+<link rel="stylesheet" href="<?=base_url('assets/vendor/bootstrap-fileinput/css/fileinput.min.css')?>">
+<link rel="stylesheet" href="<?=base_url('assets/vendor/bootstrap-fileinput/themes/bs5/theme.min.js')?>">
+<link rel="stylesheet" href="<?=base_url('assets/css/Nunito.css')?>">
+<link rel="stylesheet" href="<?=base_url('assets/fonts/fontawesome-all.min.css')?>">
+<link rel="stylesheet" href="<?=base_url('assets/css/custom.css')?>">
+<link rel="stylesheet" href="<?=base_url('assets/vendor/datatables/datatables.min.css')?>">
+<link rel="stylesheet" href="<?=base_url('assets/vendor/simple-notify/dist/simple-notify.min.css')?>">
+<link rel="stylesheet" href="<?=base_url('assets/vendor/sweetalert2/dist/sweetalert2.min.css')?>">

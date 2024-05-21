@@ -1,9 +1,11 @@
 <script src="<?=base_url('assets/vendor/jquery/jquery.min.js')?>"></script>
 <script src="<?=base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
+<script src="<?=base_url('assets/vendor/bootstrap-fileinput/js/fileinput.min.js')?>"></script>
 <script src="<?=base_url('assets/js/chart.min.js')?>"></script>
 
 <script src="<?=base_url('assets/vendor/jquery.pwstrength.bootstrap/dist/pwstrength-bootstrap.min.js')?>"></script>
 <script src="<?=base_url('assets/vendor/datatables/datatables.min.js')?>"></script>
+<script src="<?=base_url('assets/vendor/simple-notify/dist/simple-notify.min.js')?>"></script>
 <script src="<?=base_url('assets/vendor/sweetalert2/dist/sweetalert2.all.min.js')?>"></script>
 
 <script src="<?=base_url('assets/js/bs-init.js')?>"></script>

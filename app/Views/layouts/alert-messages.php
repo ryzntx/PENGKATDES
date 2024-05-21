@@ -148,4 +148,22 @@ function toastWarning(text) {
         position: 'right top'
     })
 }
+
+function confirmDeleteAlert(e, target) {
+    e.preventDefault()
+    Swal.fire({
+        title: 'Apakah anda yakin?',
+        text: "Data yang dihapus tidak bisa dikembalikan!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Ya, hapus!',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = target.href
+        }
+    })
+}
 </script>

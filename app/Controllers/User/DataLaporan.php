@@ -5,16 +5,16 @@ namespace App\Controllers\User;
 use App\Controllers\BaseController;
 use App\Models\PengaduanFotoModel;
 use App\Models\PengaduanModel;
+use App\Models\TanggapanModel;
 
 class DataLaporan extends BaseController
 {
-    protected $insertId = "";
-
     public function getIndex()
     {
         $data = [
-            'pengaduan' => model(PengaduanModel::class)->where('user_id', session()->get('id_user'))->findAll(),
+            'pengaduan' => model(PengaduanModel::class)->getTanggapanPengaduan(session()->get('id_user')),
         ];
+        // dd($data);
         return view('pages/user/laporan/list', $data);
     }
 
@@ -41,7 +41,7 @@ class DataLaporan extends BaseController
     public function getLihat($id)
     {
         $data = [
-            'pengaduan' => model(PengaduanModel::class)->find($id),
+            'pengaduan' => model(PengaduanModel::class)->getTanggapanPengaduan(id: $id),
             'foto' => model(PengaduanFotoModel::class)->where('pengaduan_id', $id)->findAll(),
         ];
         return view('pages/user/laporan/lihat', $data);
@@ -83,6 +83,7 @@ class DataLaporan extends BaseController
                 }
             }
             // Delete the record from the database
+            model(TanggapanModel::class)->where('pengaduan_id', $id)->delete();
             model(PengaduanModel::class)->delete($id);
             model(PengaduanFotoModel::class)->where('pengaduan_id', $id)->delete();
             return redirect()->to(base_url('user/datalaporan'))->with('success', 'Laporan Berhasil Dihapus!');
@@ -94,13 +95,18 @@ class DataLaporan extends BaseController
     public function postUploadFotoN()
     {
         $id_pengaduan = $this->request->getVar('id');
+        // dd($id_pengaduan);
         $foto = $this->request->getFileMultiple('foto');
-        if ($foto[0]->isValid() && !$foto[0]->hasMoved()) {
-            $foto[0]->move('uploads/pengaduan/id_' . $id_pengaduan . '/');
-            $nama_foto = $foto[0]->getName();
+        if (isset($foto[0])) {
+            if ($foto[0]->isValid() && !$foto[0]->hasMoved()) {
+                $foto[0]->move('uploads/pengaduan/id_' . $id_pengaduan . '/');
+                $nama_foto = $foto[0]->getName();
+            }
+            model(PengaduanFotoModel::class)->insert(['foto' => $nama_foto, 'pengaduan_id' => $id_pengaduan]);
+            return json_encode(['status' => 'success', 'message' => 'Foto berhasil diupload!']);
         }
-        model(PengaduanFotoModel::class)->insert(['foto' => $nama_foto, 'pengaduan_id' => $id_pengaduan]);
-        return json_encode(['status' => 'success', 'message' => 'Foto berhasil diupload!']);
+        // return response()->setStatusCode(403, 'No File Retrived')->setJSON(['status' => 'error', 'message' => 'Foto gagal diupload!']);
+        return json_encode(['status' => 'error', 'message' => 'Foto gagal diupload!']);
     }
 
     public function postUploadFoto($id)
@@ -134,5 +140,19 @@ class DataLaporan extends BaseController
         $foto = model(PengaduanFotoModel::class)->find($id);
         $path = 'uploads/pengaduan/id_' . $foto->pengaduan_id . '/' . $foto->foto;
         return $this->response->download($path, null);
+    }
+
+    public function getTanggapan($id)
+    {
+        $data = [
+            'pengaduan' => model(PengaduanModel::class)->getTanggapanPengaduan(id: $id),
+            'foto' => model(PengaduanFotoModel::class)->where('pengaduan_id', $id)->findAll(),
+        ];
+        return view('pages/user/laporan/tanggapan', $data);
+    }
+
+    public function getRedirect()
+    {
+        return redirect()->to(base_url('user/datalaporan'))->with('toast_success', 'Laporan / Pengaduan Berhasil Dibuat!');
     }
 }

@@ -1,7 +1,8 @@
 <?=$this->extend('layouts/users/base_layout')?>
 <?=$this->section('content')?>
 <div class="container">
-    <a href="<?=base_url('user/datalaporan')?>" class="btn btn-secondary mb-3">Kembali</a>
+    <a href="<?=base_url('user/datalaporan')?>" class="btn btn-secondary mb-3"><i
+            class="fa fa-arrow-left me-2"></i>Kembali</a>
     <div class="card">
         <div class="card-header">Ubah Laporan</div>
         <form action="<?=base_url('user/datalaporan/ubah/' . $pengaduan->id)?>" method="post"
@@ -26,8 +27,10 @@
                 </div>
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-warning">Ubah Laporan</button>
-                <a href="<?=base_url('user/datalaporan')?>" class="btn btn-secondary">Kembali</a>
+                <button type="submit" class="btn btn-warning"><i class="fa fa-edit me-2"></i>Ubah Laporan</button>
+                <a href="<?=base_url('user/datalaporan')?>" class="btn btn-secondary">
+                    <i class="fa fa-arrow-left me-2"></i>Kembali
+                </a>
             </div>
         </form>
     </div>
